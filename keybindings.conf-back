@@ -13,15 +13,15 @@ $term =  konsole
 $editor = code
 $file = dolphin
 $browser = firefox-nightly       
-
+$SCRIPTS = ~/.scripts
 # Window/Session actions
 bind = $mainMod, Q, exec, $scrPath/dontkillsteam.sh # close focused window
 bind = Alt, F4, exec, $scrPath/dontkillsteam.sh # close focused window
 bind = $mainMod, Delete, exit, # kill hyprland session
-bind = $mainMod, W, togglefloating, # toggle the window between focus and float
+bind = $mainMod, W, exec ,  $SCRIPTS/WallpaperSelect.sh , # toggle the window between focus and float
 bind = $mainMod, G, togglegroup, # toggle the window between focus and group
-bind = $mainMod, F11, fullscreen, # toggle the window between focus and fullscreen
-bind = $mainMod+Shift, L, exec, swaylock # launch lock screen
+bind = Alt, Return, fullscreen, # toggle the window between focus and fullscreen
+bind = $mainMod, L, exec, swaylock # launch lock screen
 bind = $mainMod+Shift, F, exec, $scrPath/windowpin.sh # toggle pin on focused window
 bind = $mainMod, Backspace, exec, $scrPath/logoutlaunch.sh # launch logout menu
 bind = Ctrl+Alt, W, exec, killall waybar || waybar # toggle waybar
@@ -81,24 +81,20 @@ bind = $mainMod+Shift, A, exec, pkill -x rofi || $scrPath/rofiselect.sh # launch
 bind = $mainMod+Shift, W, exec, pkill -x rofi || $scrPath/swwwallselect.sh # launch wallpaper select menu
 bind = $mainMod, V, exec, pkill -x rofi || $scrPath/cliphist.sh c # launch clipboard
 bind = $mainMod, I, exec, hyprctl dispatch exec "konsole --hold --new-tab -e bash -c 'cat ~/.cheat-sheet.csv | fzf | cut -d\",\" -f1 | wl-copy; hyprctl dispatch closewindow active'" | hyprctl dispatch float
+bind = $mainMod, K, exec, $scrPath/keyboardswitch.sh # switch keyboard layout
 bind = $mainMod, slash, exec, pkill -x rofi || $scrPath/keybinds_hint.sh c # launch keybinds hint
 
 # Move/Change window focus
-bind = $mainMod, J, movefocus, l
-bind = $mainMod, K, movefocus, r
+bind = $mainMod, Left, movefocus, l
+bind = $mainMod, Right, movefocus, r
 bind = $mainMod, Up, movefocus, u
 bind = $mainMod, Down, movefocus, d
 bind = Alt, Tab, movefocus, d
 
 
-bind = $mainMod, H, movefocus, l
-bind = $mainMod, L, movefocus, r
-bind = $mainMod, K, movefocus, u
-bind = $mainMod, J, movefocus, d
-bind = Alt, Tab, movefocus, d
 
 
-# bind = $mainMod , Space , exec , ~/.scripts/chmap 
+bind = $mainMod , Space , exec , ~/.scripts/chmap 
 
 
 # Switch workspaces
@@ -114,12 +110,8 @@ bind = $mainMod, 9, workspace, 9
 bind = $mainMod, 0, workspace, 10
 
 # Switch workspaces to a relative workspace
-bind = $mainMod+Shift, k, workspace, r+1
-bind = $mainMod+Shift, j, workspace, r-1
-
-
-bind = $mainMod+Ctrl, L, workspace, r+1
-bind = $mainMod+Ctrl, H, workspace, r-1
+bind = $mainMod+Ctrl, Right, workspace, r+1
+bind = $mainMod+Ctrl, Left, workspace, r-1
 
 # Move to the first empty workspace
 bind = $mainMod+Ctrl, Down, workspace, empty 
@@ -143,12 +135,8 @@ bind = $mainMod+Shift, 9, movetoworkspace, 9
 bind = $mainMod+Shift, 0, movetoworkspace, 10
 
 # Move focused window to a relative workspace
-bind = $mainMod+Ctrl+Shift, K, movetoworkspace, r+1
-bind = $mainMod+Ctrl+Shift, J, movetoworkspace, r-1
-
-
-bind = $mainMod+Ctrl+Alt, L, movetoworkspace, r+1
-bind = $mainMod+Ctrl+Alt, H, movetoworkspace, r-1
+bind = $mainMod+Ctrl+Alt, Right, movetoworkspace, r+1
+bind = $mainMod+Ctrl+Alt, Left, movetoworkspace, r-1
 
 # Move active window around current workspace with mainMod + SHIFT + CTRL [←→↑↓]
 $moveactivewindow=grep -q "true" <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive
@@ -172,7 +160,7 @@ bind = $mainMod+Alt, S, movetoworkspacesilent, special
 bind = $mainMod, S, togglespecialworkspace,
 
 # Toggle focused window split
-bind = $mainMod+Shift,o , togglesplit
+bind = $mainMod, J, togglesplit
 
 # Move focused window to a workspace silently
 bind = $mainMod+Alt, 1, movetoworkspacesilent, 1
