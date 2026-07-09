@@ -446,6 +446,16 @@ hl.bind(
 	hl.dsp.workspace.toggle_special("scratchpad_m"),
 	{ description = "Workspace: Toggle M scratchpad" }
 )
+hl.bind(
+	"SUPER + SHIFT + N",
+	hl.dsp.window.move({ workspace = "special:scratchpad_n", follow = false }),
+	{ description = "Window: Move to N scratchpad" }
+)
+hl.bind(
+	"SUPER + SHIFT + M",
+	hl.dsp.window.move({ workspace = "special:scratchpad_m", follow = false }),
+	{ description = "Window: Move to M scratchpad" }
+)
 
 --# Cursed stuff
 --## Make window not amogus large
