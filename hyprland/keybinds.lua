@@ -10,24 +10,8 @@ local hyprScripts = "$HOME/.config/hypr/hyprland/scripts"
 local qsIpcCall = "qs -c $qsConfig ipc call"
 local qsIsAlive = qsIpcCall .. " TEST_ALIVE"
 
-hl.bind("SUPER + SUPER_L", hl.dsp.global("quickshell:searchToggleRelease"), { description = "Shell: Toggle search" })
-hl.bind("SUPER + SUPER_R", hl.dsp.global("quickshell:searchToggleRelease"))
-hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd(qsIsAlive .. " || pkill fuzzel || fuzzel"))
-hl.bind("SUPER + SUPER_R", hl.dsp.exec_cmd(qsIsAlive .. " || pkill fuzzel || fuzzel"))
-
-hl.bind("SUPER_L", hl.dsp.global("quickshell:workspaceNumber"), { ignore_mods = true, transparent = true })
-hl.bind("SUPER_R", hl.dsp.global("quickshell:workspaceNumber"), { ignore_mods = true, transparent = true })
-hl.bind(
-	"SUPER_L",
-	hl.dsp.global("quickshell:workspaceNumber"),
-	{ ignore_mods = true, transparent = true, release = true }
-)
-hl.bind(
-	"SUPER_R",
-	hl.dsp.global("quickshell:workspaceNumber"),
-	{ ignore_mods = true, transparent = true, release = true }
-)
 hl.bind("SUPER + Tab", hl.dsp.global("quickshell:overviewWorkspacesToggle"), { description = "Shell: Toggle overview" })
+hl.bind("SUPER + A", hl.dsp.global("quickshell:launcherToggle"), { description = "Shell: Toggle app launcher" })
 hl.bind("SUPER + V", hl.dsp.global("quickshell:overviewClipboardToggle"))
 hl.bind("SUPER + Period", hl.dsp.global("quickshell:overviewEmojiToggle"))
 hl.bind("SUPER + B", hl.dsp.global("quickshell:sidebarLeftToggle"))
@@ -133,12 +117,7 @@ hl.bind(
 	hl.dsp.exec_cmd("hyprpicker -a"),
 	{ description = "Utilities: Pick color #RRGGBB >> clipboard" }
 )
---# Recording stuff
-hl.bind(
-	"SUPER + SHIFT + R",
-	hl.dsp.global("quickshell:regionRecord"),
-	{ locked = true, description = "Utilities: Record region (no sound)" }
-)
+
 hl.bind(
 	"SUPER + SHIFT + R",
 	hl.dsp.exec_cmd(qsIsAlive .. " || " .. qsScripts .. "/videos/record.sh"),
@@ -262,7 +241,7 @@ hl.bind("SUPER + SHIFT + ALT + Q", hl.dsp.exec_cmd("hyprctl kill"), { descriptio
 hl.bind("SUPER + Semicolon", hl.dsp.layout("splitratio -0.1"), { repeating = true })
 hl.bind("SUPER + Apostrophe", hl.dsp.layout("splitratio +0.1"), { repeating = true })
 --# Positioning mode
-hl.bind("SUPER + ALT + Space", hl.dsp.window.float({ action = "toggle" }), { description = "Window: Float/Tile" })
+hl.bind("SUPER + W", hl.dsp.window.float({ action = "toggle" }), { description = "Window: Float/Tile" })
 hl.bind(
 	"SUPER + D",
 	hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }),
@@ -425,7 +404,7 @@ hl.bind("SUPER + Return", hl.dsp.exec_cmd(terminal), { description = "App: Termi
 hl.bind("SUPER + T", hl.dsp.exec_cmd(terminal))
 hl.bind("CTRL + ALT + T", hl.dsp.exec_cmd(terminal))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("dolphin"), { description = "App: File manager" })
-hl.bind("SUPER + F", hl.dsp.exec_cmd("zen-browser"), { description = "App: Browser" })
+hl.bind("SUPER + F", hl.dsp.exec_cmd("~/.local/opt/zen/zen"), { description = "App: Browser" })
 hl.bind("SUPER + C", hl.dsp.exec_cmd(codeEditor), { description = "App: Code editor" })
 hl.bind("CTRL + SUPER + SHIFT + ALT + W", hl.dsp.exec_cmd(officeSoftware), { description = "App: Office software" })
 hl.bind("SUPER + X", hl.dsp.exec_cmd(textEditor), { description = "App: Text editor" })
@@ -434,7 +413,6 @@ hl.bind("SUPER + I", hl.dsp.exec_cmd(settingsApp), { description = "App: Setting
 hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(taskManager), { description = "App: Task manager" })
 
 hl.bind("ALT + SPACE", hl.dsp.exec_cmd("krunner"), { description = "App: Task manager" })
-hl.bind("SUPER + A", hl.dsp.exec_cmd(SCRIPTS .. "/rofi.sh"), { description = "App: Task manager" })
 
 hl.bind(
 	"SUPER + N",
@@ -460,3 +438,4 @@ hl.bind(
 --# Cursed stuff
 --## Make window not amogus large
 hl.bind("CTRL + SUPER + Backslash", hl.dsp.window.resize({ x = 639, y = 480, "exact" }))
+hl.bind("SUPER + escape", hl.dsp.global("quickshell:settingsToggle"), { description = "Toggle settings" })
